@@ -14,13 +14,15 @@ export class SearchComponent implements OnInit {
   artists: any[] = [];
   loading: boolean;
   buscar(termino: string) {
-    this.loading = true;
-    this.spotify.getArtist(termino)
+    if (termino.length > 0 && termino !== undefined) {
+      this.loading = true;
+      this.spotify.getArtist(termino)
         .subscribe((data: any) => {
           this.artists = data;
           this.loading = false;
           return this.artists;
         });
+    }
   }
   ngOnInit(): void {
   }
